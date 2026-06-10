@@ -1,0 +1,14 @@
+{
+  "extends": "@boilerplate-monorepo-with-reactnative-and-go/config/tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": [],
+    "paths": {
+      "@boilerplate-monorepo-with-reactnative-and-go/ui/*": ["./src/*"]
+    },
+    "strictNullChecks": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "scheme": "boilerplate-monorepo-with-reactnative-and-go",
+    "userInterfaceStyle": "automatic",
+    "orientation": "default",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "boilerplate-monorepo-with-reactnative-and-go",
+    "slug": "boilerplate-monorepo-with-reactnative-and-go",
+    "plugins": ["expo-font"],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}

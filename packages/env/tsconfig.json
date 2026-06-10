@@ -1,0 +1,6 @@
+{
+  "extends": "@boilerplate-monorepo-with-reactnative-and-go/config/tsconfig.base.json",
+  "compilerOptions": {
+    "strictNullChecks": true
+  }
+}
