@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import process from "node:process";
@@ -27,14 +25,14 @@ function createValidator(schema) {
 async function validateFile(validator, filePath) {
   const content = await readFile(filePath, "utf-8");
 
-  let doc;
+  let document_;
   try {
-    doc = yaml.load(content);
-  } catch (e) {
-    return { valid: false, error: `YAML parse error: ${e.message}` };
+    document_ = yaml.load(content);
+  } catch (error) {
+    return { valid: false, error: `YAML parse error: ${error.message}` };
   }
 
-  const valid = validator(doc);
+  const valid = validator(document_);
   if (!valid) {
     return { valid: false, error: formatErrors(validator.errors) };
   }
@@ -53,10 +51,14 @@ function formatErrors(errors) {
 }
 
 if (import.meta.main) {
-  const args = process.argv.slice(2);
-  const files = args.filter((a) => !a.startsWith("-"));
+  const arguments_ = process.argv.slice(2);
+  const files = arguments_.filter((a) => !a.startsWith("-"));
 
-  if (files.length === 0 || args.includes("--help") || args.includes("-h")) {
+  if (
+    files.length === 0 ||
+    arguments_.includes("--help") ||
+    arguments_.includes("-h")
+  ) {
     console.log(`Usage: validate <workflow.yml> [workflow2.yml ...]
 
 Validates EAS workflow YAML files against the official schema.`);

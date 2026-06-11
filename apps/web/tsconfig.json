@@ -11,7 +11,9 @@
     "rootDirs": ["."],
     "paths": {
       "@/*": ["./src/*"],
-      "@boilerplate-monorepo-with-reactnative-and-go/ui/*": ["../../packages/ui/src/*"]
+      "@boilerplate-monorepo-with-reactnative-and-go/ui/*": [
+        "../../packages/ui/src/*"
+      ]
     }
   }
 }

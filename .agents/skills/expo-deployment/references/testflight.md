@@ -46,11 +46,9 @@ The CLI prints your Team ID when you run `npx testflight`. Copy it.
 
 ## Troubleshooting
 
-**"No suitable application records found"**
-Create the app in App Store Connect first. Bundle ID must match.
+**"No suitable application records found"** Create the app in App Store Connect first. Bundle ID must match.
 
-**"The bundle version must be higher"**
-Use `autoIncrement: true` in `eas.json`. Problem solved.
+**"The bundle version must be higher"** Use `autoIncrement: true` in `eas.json`. Problem solved.
 
 **Credentials issues**
 

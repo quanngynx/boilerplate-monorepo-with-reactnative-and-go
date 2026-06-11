@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Get complete component documentation (MDX) for HeroUI Native components.
  *
@@ -10,7 +9,8 @@
  *   MDX documentation including imports, usage, variants, props, examples
  */
 
-const API_BASE = process.env.HEROUI_NATIVE_API_BASE || "https://native-mcp-api.heroui.com";
+const API_BASE =
+  process.env.HEROUI_NATIVE_API_BASE || "https://native-mcp-api.heroui.com";
 const FALLBACK_BASE = "https://heroui.com";
 const APP_PARAM = "app=native-skills";
 
@@ -19,8 +19,8 @@ const APP_PARAM = "app=native-skills";
  */
 function toKebabCase(name) {
   return name
-    .replace(/([a-z])([A-Z])/g, "$1-$2")
-    .replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
+    .replaceAll(/([a-z])([A-Z])/g, "$1-$2")
+    .replaceAll(/([A-Z])([A-Z][a-z])/g, "$1-$2")
     .toLowerCase();
 }
 
@@ -38,7 +38,7 @@ async function fetchApi(endpoint, method = "GET", body = null) {
         "User-Agent": "HeroUI-Native-Skill/1.0",
       },
       method,
-      signal: AbortSignal.timeout(30000),
+      signal: AbortSignal.timeout(30_000),
     };
 
     if (body) {
@@ -67,7 +67,7 @@ async function fetchFallback(component) {
   try {
     const response = await fetch(url, {
       headers: { "User-Agent": "HeroUI-Native-Skill/1.0" },
-      signal: AbortSignal.timeout(30000),
+      signal: AbortSignal.timeout(30_000),
     });
 
     if (!response.ok) {
@@ -92,15 +92,17 @@ async function fetchFallback(component) {
  * Main function to get component documentation.
  */
 async function main() {
-  const args = process.argv.slice(2);
+  const arguments_ = process.argv.slice(2);
 
-  if (args.length === 0) {
-    console.error("Usage: node get_component_docs.mjs <Component1> [Component2] ...");
+  if (arguments_.length === 0) {
+    console.error(
+      "Usage: node get_component_docs.mjs <Component1> [Component2] ..."
+    );
     console.error("Example: node get_component_docs.mjs Button Card");
     process.exit(1);
   }
 
-  const components = args;
+  const components = arguments_;
 
   // Try API first - use POST /v1/components/docs for batch requests
   console.error(`# Fetching Native docs for: ${components.join(", ")}...`);

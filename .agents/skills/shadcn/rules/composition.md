@@ -44,13 +44,13 @@ Never render items directly inside the content container.
 
 This applies to all group-based components:
 
-| Item                                                       | Group               |
-| ---------------------------------------------------------- | ------------------- |
-| `SelectItem`, `SelectLabel`                                | `SelectGroup`       |
+| Item | Group |
+| --- | --- |
+| `SelectItem`, `SelectLabel` | `SelectGroup` |
 | `DropdownMenuItem`, `DropdownMenuLabel`, `DropdownMenuSub` | `DropdownMenuGroup` |
-| `MenubarItem`                                              | `MenubarGroup`      |
-| `ContextMenuItem`                                          | `ContextMenuGroup`  |
-| `CommandItem`                                              | `CommandGroup`      |
+| `MenubarItem` | `MenubarGroup` |
+| `ContextMenuItem` | `ContextMenuGroup` |
+| `CommandItem` | `CommandGroup` |
 
 ---
 
@@ -190,8 +190,8 @@ Always include `AvatarFallback` for when the image fails to load:
 
 ## Use existing components instead of custom markup
 
-| Instead of                                         | Use                                  |
-| -------------------------------------------------- | ------------------------------------ |
-| `<hr>` or `<div className="border-t">`             | `<Separator />`                      |
+| Instead of | Use |
+| --- | --- |
+| `<hr>` or `<div className="border-t">` | `<Separator />` |
 | `<div className="animate-pulse">` with styled divs | `<Skeleton className="h-4 w-3/4" />` |
-| `<span className="rounded-full bg-green-100 ...">` | `<Badge variant="secondary">`        |
+| `<span className="rounded-full bg-green-100 ...">` | `<Badge variant="secondary">` |

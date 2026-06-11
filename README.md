@@ -11,6 +11,7 @@ This project was created with [Better-T-Stack](https://github.com/AmanVarshney01
 - **TailwindCSS** - Utility-first CSS for rapid UI development
 - **Shared UI package** - shadcn/ui primitives live in `packages/ui`
 - **Turborepo** - Optimized monorepo build system
+- **Go Gin API** - Backend server with GORM, Postgres, Redis, and Docker support
 
 ## Getting Started
 
@@ -20,14 +21,44 @@ First, install the dependencies:
 pnpm install
 ```
 
-Then, run the development server:
+### Backend (Go Gin)
+
+Start Postgres and Redis:
+
+```bash
+pnpm --filter server dev:deps
+```
+
+Copy the server environment file and start the API:
+
+```bash
+cp apps/server/.env.example apps/server/.env
+pnpm dev:server
+```
+
+Or run the full Docker stack (Postgres, Redis, and API):
+
+```bash
+pnpm dev:server:docker
+```
+
+The API listens on [http://localhost:8080](http://localhost:8080).
+
+### Frontend
+
+Then, run the development servers:
 
 ```bash
 pnpm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser to see the web application.
-Use the Expo Go app to run the mobile application.
+Open [http://localhost:3001](http://localhost:3001) in your browser to see the web application. Use the Expo Go app to run the mobile application.
+
+For native development, copy the Expo environment file:
+
+```bash
+cp apps/native/.env.example apps/native/.env
+```
 
 ## UI Customization
 
@@ -71,14 +102,32 @@ boilerplate-monorepo-with-reactnative-and-go/
 ├── apps/
 │   ├── web/         # Frontend application (React + TanStack Router)
 │   ├── native/      # Mobile application (React Native, Expo)
+│   └── server/      # Backend API (Go Gin + GORM + Redis)
 ├── packages/
 │   ├── ui/          # Shared shadcn/ui components and styles
+│   └── env/         # Shared environment validation
 ```
+
+## Server Environment Variables
+
+Configure `apps/server/.env` using `apps/server/.env.example`:
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `PORT` | `8080` | API bind port |
+| `GIN_MODE` | `debug` | Gin mode (`release` in production) |
+| `ALLOWED_ORIGINS` | `http://localhost:3001` | Comma-separated CORS origins |
+| `DATABASE_URL` | — | Postgres connection string |
+| `REDIS_URL` | — | Redis connection string |
+| `LOG_LEVEL` | `info` | Structured log level |
+| `APP_NAME` | `server` | Application name in logs |
 
 ## Available Scripts
 
 - `pnpm run dev`: Start all applications in development mode
 - `pnpm run build`: Build all applications
 - `pnpm run dev:web`: Start only the web application
+- `pnpm run dev:server`: Start only the Go API (requires Postgres + Redis)
+- `pnpm run dev:server:docker`: Start Postgres, Redis, and API via Docker Compose
 - `pnpm run check-types`: Check TypeScript types across all apps
 - `pnpm run dev:native`: Start the React Native/Expo development server

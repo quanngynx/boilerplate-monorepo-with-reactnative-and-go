@@ -1,22 +1,4 @@
 {
-  "name": "boilerplate-monorepo-with-reactnative-and-go",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "type": "module",
-  "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "check-types": "turbo check-types",
-    "dev:native": "turbo -F native dev",
-    "dev:web": "turbo -F web dev",
-    "deploy": "turbo -F @boilerplate-monorepo-with-reactnative-and-go/infra deploy",
-    "destroy": "turbo -F @boilerplate-monorepo-with-reactnative-and-go/infra destroy",
-    "check": "ultracite check",
-    "fix": "ultracite fix"
-  },
   "dependencies": {
     "@boilerplate-monorepo-with-reactnative-and-go/env": "workspace:*",
     "dotenv": "catalog:",
@@ -26,6 +8,10 @@
     "@boilerplate-monorepo-with-reactnative-and-go/config": "workspace:*",
     "@cloudflare/workers-types": "^4.20251213.0",
     "@eslint/js": "^9.0.0",
+    "@tanstack/eslint-plugin-query": "^5.101.0",
+    "@tanstack/eslint-plugin-router": "^1.162.0",
+    "@tanstack/eslint-plugin-start": "^0.1.0",
+    "@types/node": "24.8.1",
     "@typescript-eslint/eslint-plugin": "^8.60.1",
     "@typescript-eslint/parser": "^8.60.1",
     "eslint": "^9.0.0",
@@ -54,5 +40,25 @@
     "typescript": "catalog:",
     "ultracite": "7.8.3"
   },
+  "name": "boilerplate-monorepo-with-reactnative-and-go",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:native": "turbo -F native dev",
+    "dev:web": "turbo -F web dev",
+    "dev:server": "turbo -F server dev",
+    "dev:server:docker": "turbo -F server dev:docker",
+    "deploy": "turbo -F @boilerplate-monorepo-with-reactnative-and-go/infra deploy",
+    "destroy": "turbo -F @boilerplate-monorepo-with-reactnative-and-go/infra destroy",
+    "check": "ultracite check",
+    "fix": "ultracite fix"
+  },
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "private": true,
   "packageManager": "pnpm@10.28.1"
 }

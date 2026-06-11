@@ -1,5 +1,9 @@
 import { Toaster } from "@boilerplate-monorepo-with-reactnative-and-go/ui/components/sonner";
-import { HeadContent, Outlet, createRootRouteWithContext } from "@tanstack/react-router";
+import {
+  HeadContent,
+  Outlet,
+  createRootRouteWithContext,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import Header from "@/components/header";
@@ -18,7 +22,8 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
       },
       {
         name: "description",
-        content: "boilerplate-monorepo-with-reactnative-and-go is a web application",
+        content:
+          "boilerplate-monorepo-with-reactnative-and-go is a web application",
       },
     ],
     links: [
@@ -40,7 +45,7 @@ function RootComponent() {
         disableTransitionOnChange
         storageKey="vite-ui-theme"
       >
-        <div className="grid grid-rows-[auto_1fr] h-svh">
+        <div className="grid h-svh grid-rows-[auto_1fr]">
           <Header />
           <Outlet />
         </div>

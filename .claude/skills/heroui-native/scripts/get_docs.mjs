@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Get non-component HeroUI Native documentation (guides, theming, releases).
  *
@@ -12,7 +11,8 @@
  * Note: For component docs, use get_component_docs.mjs instead.
  */
 
-const API_BASE = process.env.HEROUI_NATIVE_API_BASE || "https://native-mcp-api.heroui.com";
+const API_BASE =
+  process.env.HEROUI_NATIVE_API_BASE || "https://native-mcp-api.heroui.com";
 const FALLBACK_BASE = "https://heroui.com";
 const APP_PARAM = "app=native-skills";
 
@@ -24,7 +24,7 @@ async function fetchApi(path) {
   // The v1 API expects path without /docs/ prefix
   // Input: /docs/native/getting-started/theming
   // API expects: native/getting-started/theming (route is /v1/docs/:path(*))
-  let apiPath = path.startsWith("/docs/")
+  const apiPath = path.startsWith("/docs/")
     ? path.slice(6) // Remove /docs/ prefix
     : path.startsWith("/")
       ? path.slice(1) // Remove leading /
@@ -36,7 +36,7 @@ async function fetchApi(path) {
   try {
     const response = await fetch(url, {
       headers: { "User-Agent": "HeroUI-Native-Skill/1.0" },
-      signal: AbortSignal.timeout(30000),
+      signal: AbortSignal.timeout(30_000),
     });
 
     if (!response.ok) {
@@ -69,7 +69,7 @@ async function fetchFallback(path) {
   try {
     const response = await fetch(url, {
       headers: { "User-Agent": "HeroUI-Native-Skill/1.0" },
-      signal: AbortSignal.timeout(30000),
+      signal: AbortSignal.timeout(30_000),
     });
 
     if (!response.ok) {
@@ -94,11 +94,13 @@ async function fetchFallback(path) {
  * Main function to get documentation for specified path.
  */
 async function main() {
-  const args = process.argv.slice(2);
+  const arguments_ = process.argv.slice(2);
 
-  if (args.length === 0) {
+  if (arguments_.length === 0) {
     console.error("Usage: node get_docs.mjs <path>");
-    console.error("Example: node get_docs.mjs /docs/native/getting-started/theming");
+    console.error(
+      "Example: node get_docs.mjs /docs/native/getting-started/theming"
+    );
     console.error();
     console.error("Available paths include:");
     console.error("  /docs/native/getting-started/theming");
@@ -106,24 +108,31 @@ async function main() {
     console.error("  /docs/native/getting-started/styling");
     console.error("  /docs/native/releases/beta-12");
     console.error();
-    console.error("Note: For component docs, use get_component_docs.mjs instead.");
+    console.error(
+      "Note: For component docs, use get_component_docs.mjs instead."
+    );
     process.exit(1);
   }
 
-  const path = args[0];
+  const path = arguments_[0];
 
   // Check if user is trying to get component docs
   if (path.includes("/components/")) {
-    console.error("# Warning: Use get_component_docs.mjs for component documentation.");
+    console.error(
+      "# Warning: Use get_component_docs.mjs for component documentation."
+    );
     const componentName = path.split("/").pop().replace(".mdx", "");
-    const titleCase = componentName.charAt(0).toUpperCase() + componentName.slice(1);
+    const titleCase =
+      componentName.charAt(0).toUpperCase() + componentName.slice(1);
 
     console.error(`# Example: node get_component_docs.mjs ${titleCase}`);
   }
 
   // Validate Native path
   if (!path.startsWith("/docs/native/")) {
-    console.error("# Warning: Native documentation paths should start with /docs/native/");
+    console.error(
+      "# Warning: Native documentation paths should start with /docs/native/"
+    );
     console.error(`# Provided path: ${path}`);
   }
 

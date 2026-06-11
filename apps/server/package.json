@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node ./scripts/dev.mjs",
+    "dev:app": "node ./scripts/with-go-env.mjs run ./cmd/server",
+    "dev:docker": "docker compose up --build",
+    "dev:deps": "docker compose up postgres redis -d --wait",
+    "build": "node ./scripts/with-go-env.mjs build -o ./bin/server ./cmd/server",
+    "start": "./bin/server",
+    "check-types": "node ./scripts/with-go-env.mjs vet ./...",
+    "test": "node ./scripts/with-go-env.mjs test ./...",
+    "docker:build": "docker compose build",
+    "docker:down": "docker compose down -v"
+  }
+}
